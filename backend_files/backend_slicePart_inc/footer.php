@@ -61,3 +61,10 @@
 
 </html>
 
+
+<?php
+unset($_SESSION['success']);
+// unset($_SESSION['user_email_error']);
+// unset($_SESSION['password_error']);
+?>
+

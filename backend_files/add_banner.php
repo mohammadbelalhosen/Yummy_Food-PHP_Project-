@@ -2,7 +2,7 @@
 include './backend_slicePart_inc/header.php';
 ?>
 <!-- toast massage -->
-<!-- <?php
+<?php
 if (isset($_SESSION['success'])) {
 ?>
     <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true" style="position:absolute;bottom:70px;right:20px">
@@ -16,7 +16,7 @@ if (isset($_SESSION['success'])) {
     </div>
 <?php
 }
-?> -->
+?>
 
 
 
