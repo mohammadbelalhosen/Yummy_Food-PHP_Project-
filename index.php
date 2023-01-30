@@ -1,4 +1,5 @@
  <?php
+  session_start();
   include('./fronend_slicePart_inc/header.php'); //include header part
 
   //fetch for banner
@@ -301,8 +302,95 @@
 
            <!-- book a table form start -->
 
-           <?= include './fronend_slicePart_inc/book_a_table.php' ?>
-
+           <form action="./controller/book_table.php" method="post" style="padding: 40px;">
+             <div class="row gy-4">
+               <div class="col-lg-4 col-md-6">
+                 <input type="text" name="name" class="form-control" value="<?= isset($_SESSION['old_data']['name']) ? $_SESSION['old_data']['name'] : '' ?>" placeholder="Your Name">
+                 <?php
+                  if (isset($_SESSION['errors']['name_error'])) {
+                  ?>
+                   <span class="text-danger"><?= "*" . $_SESSION['errors']['name_error'] ?></span>
+                 <?php
+                  }
+                  ?>
+               </div>
+               <div class="col-lg-4 col-md-6">
+                 <input type="email" class="form-control" name="email" id="email" value="<?= isset($_SESSION['old_data']['email']) ? $_SESSION['old_data']['email'] : '' ?>" placeholder="Your Email">
+                 <?php
+                  if (isset($_SESSION['errors']['email_error'])) {
+                  ?>
+                   <span class="text-danger"><?= "*" . $_SESSION['errors']['email_error'] ?></span>
+                 <?php
+                  }
+                  ?>
+               </div>
+               <div class="col-lg-4 col-md-6">
+                 <input type="phone" class="form-control" name="phone" id="phone" value="<?= isset($_SESSION['old_data']['phone']) ? $_SESSION['old_data']['phone'] : '' ?>" placeholder="Your Phone">
+                 <?php
+                  if (isset($_SESSION['errors']['phone_error'])) {
+                  ?>
+                   <span class="text-danger"><?= "*" . $_SESSION['errors']['phone_error'] ?></span>
+                 <?php
+                  }
+                  ?>
+               </div>
+               <div class="col-lg-4 col-md-6">
+                 <input type="text" name="date" class="form-control" id="date" value="<?= isset($_SESSION['old_data']['date']) ? $_SESSION['old_data']['date'] : '' ?>" placeholder="Date">
+                 <?php
+                  if (isset($_SESSION['errors']['date_error'])) {
+                  ?>
+                   <span class="text-danger"><?= "*" . $_SESSION['errors']['date_error'] ?></span>
+                 <?php
+                  }
+                  ?>
+               </div>
+               <div class="col-lg-4 col-md-6">
+                 <input type="text" class="form-control" name="time" id="time" value="<?= isset($_SESSION['old_data']['time']) ? $_SESSION['old_data']['time'] : '' ?>" placeholder="Time">
+                 <?php
+                  if (isset($_SESSION['errors']['time_error'])) {
+                  ?>
+                   <span class="text-danger"><?= "*" . $_SESSION['errors']['time_error'] ?></span>
+                 <?php
+                  }
+                  ?>
+               </div>
+               <div class="col-lg-4 col-md-6">
+                 <input type="number" class="form-control" name="total_people" value="<?= isset($_SESSION['old_data']['total_people']) ? $_SESSION['old_data']['total_people'] : '' ?>" placeholder="# of people">
+                 <?php
+                  if (isset($_SESSION['errors']['total_people_error'])) {
+                  ?>
+                   <span class="text-danger"><?= "*" . $_SESSION['errors']['total_people_error'] ?></span>
+                 <?php
+                  }
+                  ?>
+               </div>
+             </div>
+             <div class="form-group mt-3">
+               <textarea class="form-control" name="message" rows="5" placeholder="Message"><?= isset($_SESSION['old_data']['message']) ? $_SESSION['old_data']['message'] : '' ?></textarea>
+               <?php
+                if (isset($_SESSION['errors']['message_error'])) {
+                ?>
+                 <span class="text-danger"><?= "*" . $_SESSION['errors']['message_error'] ?></span>
+               <?php
+                }
+                ?>
+             </div>
+             <div class="text-center mt-3">
+               <button style="background: var(--color-primary);
+  border: 0;
+  padding: 14px 60px;
+  color: #fff;
+  transition: 0.4s;
+  border-radius: 50px;margin-bottom: 30px;" type="submit" name='submit' value="submitted">Book a Table</button>
+             </div>
+             <?php
+              if (isset($_SESSION['success'])) {
+              ?>
+               <div style="text-align: center;background: #ce1212;padding: 20px;color:white;"><?= $_SESSION['success'] ?></div>
+             <?php
+              }
+              ?>
+           </form>
            <!-- book a table form end -->
          </div>
          <!-- End Reservation Form -->
@@ -434,4 +522,7 @@
  <!-- include footer part -->
  <?php
   include('./fronend_slicePart_inc/footer.php');
+  unset($_SESSION['errors']);
+  unset($_SESSION['old_data']);
+  unset($_SESSION['success']);
   ?>
