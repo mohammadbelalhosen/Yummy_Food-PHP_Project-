@@ -11,7 +11,7 @@ if (isset($_POST['submit'])) {
   $video_link = $_POST['video_link'];
   $banner_img = $_FILES['banner_img'];
   $extension = pathinfo($banner_img['name'])['extension'];
-  $ecepted_files = ['png', 'jpg', 'svg', 'jpeg'];
+  $ecepted_files = ['png', 'jpg', 'svg', 'JPG', 'jpeg'];
   $found_img =  in_array($extension, $ecepted_files);
   // print_r($extention);
   // exit;
@@ -40,13 +40,20 @@ if (isset($_POST['submit'])) {
     header("location: ../backend_files/add_banner.php");
   } else {
     //* no errors
+    //* image processing
+
+    $image_name = 'banner-' . uniqid() . '.' . $extension;
+
+    move_uploaded_file($banner_img['tmp_name'], "../backend_files/uploads/$image_name");
+
+    // print_r($banner_img);
+    $query = "INSERT INTO add_banner_part(img_banner, banner_title, banner_des, video_link) VALUES ('$image_name','$banner_title','$banner_des','$video_link')";
+    $exe = mysqli_query($conn, $query);
+    if ($exe) {
+      header("location: ../backend_files/add_banner.php");
+      $_SESSION['success'] = " Banner Added Succesfully !";
+    }
   }
-  // $query = "INSERT INTO add_banner_part(img_banner, banner_title, banner_des, video_link) VALUES ('$banner_img','$banner_title','$banner_des','$video_link')";
-  // $exe = mysqli_query($conn, $query);
-  // if ($exe) {
-  //   header("location: ../backend_files/add_banner.php");
-  //   $_SESSION['success'] = " Banner Added Succesfully !";
-  // }
 } else {
   //*fill the form
 }
