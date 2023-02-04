@@ -8,8 +8,8 @@
       <div>
         <h4>Address</h4>
         <p>
-          A108 Adam Street <br>
-          New York, NY 535022 - US<br>
+        4100, 146, CDA Ave<br>
+        Wasa Moor, চট্টগ্রাম 4100 <br>
         </p>
       </div>
 
@@ -20,8 +20,8 @@
       <div>
         <h4>Reservations</h4>
         <p>
-          <strong>Phone:</strong> +1 5589 55488 55<br>
-          <strong>Email:</strong> info@example.com<br>
+          <strong>Phone:</strong> +880 1558955488<br>
+          <strong>Email:</strong> unknown66775@gamil.com<br>
         </p>
       </div>
     </div>
@@ -52,7 +52,8 @@
 
 <!-- <div class="container">
   <div class="copyright">
-    &copy; Copyright <strong><span>Yummy</span></strong>. All Rights Reserved
+    &copy; Copyright <strong><span>Empac</span></strong>. All Rights Reserved
+    <span>This Website Created 8th Computer Students</span>
   </div>
   <div class="credits"> -->
     <!-- All the links in the footer should remain intact. -->
