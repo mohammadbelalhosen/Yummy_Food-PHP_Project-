@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 $id = $_GET['id'];
 include '../include/env.php';
 $qury = "SELECT img_banner FROM add_banner_part WHERE id=$id";
@@ -16,5 +16,6 @@ if (file_exists($path) == 1) {
 
 $qu = "DELETE FROM add_banner_part WHERE id=$id";
 $e = mysqli_query($conn, $qu);
+$_SESSION['delete'] = "Banner Deleted Successfully !";
 
 header("Location: ../backend_files/all_banner.php");

@@ -9,6 +9,21 @@ $results = mysqli_fetch_all($data, 1);
 ?>
 
 
+<?php
+if (isset($_SESSION['success'])) {
+?>
+    <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true" style="position:absolute;top:10px;right:10px">
+        <div class="toast-header">
+            <strong class="me-auto">Add Food</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            <?= $_SESSION['success'] ?>
+        </div>
+    </div>
+<?php
+}
+?>
 
 <div class="card">
     <div class="card-header bg-primary text-light">
@@ -67,18 +82,20 @@ $results = mysqli_fetch_all($data, 1);
                         ?>
                     </label>
 
-
+                    <label for="" class="w-100">Enter Food Price Discount<span class="text-danger">*</span>
+                        <input type="text" class="form-control" name="food_discount">
+                    </label>
                     <label for="" class="w-100">Select Catagory<span class="text-danger">*</span>
                         <select class="form-control" name="catagory_id" id="">
                             <option value="" disabled selected>Select Catagory</option>
                             <?php
                             foreach ($results as $key => $result) {
                             ?>
-                                <option value="<?= $result['id'] ?>"><?= $result['catagory'] ?></option>                             
-                                <?php
+                                <option value="<?= $result['id'] ?>"><?= $result['catagory'] ?></option>
+                            <?php
                             }
                             ?>
-                            </select>
+                        </select>
 
 
 

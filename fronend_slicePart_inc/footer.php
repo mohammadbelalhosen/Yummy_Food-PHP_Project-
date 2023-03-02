@@ -8,8 +8,7 @@
       <div>
         <h4>Address</h4>
         <p>
-        4100, 146, CDA Ave<br>
-        Wasa Moor, চট্টগ্রাম 4100 <br>
+        <?=$contact['address']?>
         </p>
       </div>
 
@@ -20,8 +19,8 @@
       <div>
         <h4>Reservations</h4>
         <p>
-          <strong>Phone:</strong> +880 1558955488<br>
-          <strong>Email:</strong> unknown66775@gamil.com<br>
+          <strong>Phone : </strong><?='+880 '. $contact['number']?><br>
+          <strong>Email : </strong><?=$contact['email']?><br>
         </p>
       </div>
     </div>
@@ -31,8 +30,8 @@
       <div>
         <h4>Opening Hours</h4>
         <p>
-          <strong>Mon-Sat: 11AM</strong> - 23PM<br>
-          Sunday: Closed
+          <strong><?=$contact['open_day'] . ': '?></strong><?=$contact['open_time'] . ' ;'?><br>
+          <?=$contact['close_day'] . ' : Clossed'?>
         </p>
       </div>
     </div>
@@ -40,10 +39,10 @@
     <div class="col-lg-3 col-md-6 footer-links">
       <h4>Follow Us</h4>
       <div class="social-links d-flex">
-        <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-        <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-        <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-        <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+        <a href="<?=$contact['social_link']?>" class="facebook"><i class="bi bi-facebook"></i></a>
+        <a href="<?=$contact['social_link']?>" class="twitter"><i class="bi bi-twitter"></i></a>
+        <!-- <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+        <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a> -->
       </div>
     </div>
 

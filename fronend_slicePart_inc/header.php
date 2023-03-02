@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Yummy Food | Index </title>
+  <title>Yummy Restaurant | Index </title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -28,6 +28,64 @@
   <!-- Template Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
 
+  <!-- custom css file  -->
+  <style>
+    input[type=text],
+    input[type=email],
+    input[type=number],
+    input[type=date],
+    input[type=time],
+    input[type=phone] {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      box-sizing: border-box;
+      border: 3px solid #ccc;
+      -webkit-transition: 0.5s;
+      transition: 0.5s;
+      outline: none;
+    }
+
+    #message {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      box-sizing: border-box;
+      border: 3px solid #ccc;
+      -webkit-transition: 0.5s;
+      transition: 0.5s;
+      outline: none;
+    }
+
+    input[type=text]:focus {
+      border: 3px solid red;
+    }
+
+    input[type=email]:focus {
+      border: 3px solid red;
+    }
+
+    input[type=number]:focus {
+      border: 3px solid red;
+    }
+
+    input[type=date]:focus {
+      border: 3px solid red;
+    }
+
+    input[type=time]:focus {
+      border: 3px solid red;
+    }
+
+    input[type=phone]:focus {
+      border: 3px solid red;
+    }
+
+    #message:focus {
+      border: 3px solid red;
+    }
+  </style>
+
   <!-- =======================================================
   * Template Name: Yummy - v1.2.1
   * Template URL: https://bootstrapmade.com/yummy-bootstrap-restaurant-website-template/
@@ -45,7 +103,7 @@
       <a href="index.html" class="logo d-flex align-items-center me-auto me-lg-0">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="assets/img/logo.png" alt=""> -->
-        <h1>Yummy<span>.</span></h1>
+        <h1>Yummy Restaurant<span>.</span></h1>
       </a>
 
       <nav id="navbar" class="navbar">
@@ -55,6 +113,7 @@
           <li><a href="#menu">Menu</a></li>
           <li><a href="#events">Events</a></li>
           <li><a href="#chefs">Chefs</a></li>
+          <li><a href="#book-a-table">Table</a></li>
           <li><a href="#gallery">Gallery</a></li>
           <li><a href="#contact">Contact Us</a></li>
           <!-- <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
@@ -76,7 +135,7 @@
           </li> -->
           <!-- when need dropdown then use it -->
           </a></li>
-          <li><a href="./backend_files/login.php">Login</a></li>
+          <!-- <li><a href="./backend_files/login.php">Login</a></li> -->
         </ul>
       </nav><!-- .navbar -->
 

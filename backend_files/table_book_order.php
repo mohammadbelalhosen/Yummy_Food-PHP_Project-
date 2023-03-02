@@ -8,7 +8,22 @@ $results = mysqli_fetch_all($data, 1);
 
 ?>
 
-<div class="bg-primary text-light h3 ">All Table Book Order</div>
+<?php
+if (isset($_SESSION['success'])) {
+?>
+    <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true" style="position:absolute;top:10px;right:10px">
+        <div class="toast-header">
+            <strong class="me-auto">Cancel Table Order</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            <?= $_SESSION['success'] ?>
+        </div>
+    </div>
+<?php
+}
+?>
+<div style="padding:20px" class="bg-primary text-light h3 ">All Table Book Order</div>
 <table class="table">
     <thead>
         <tr>
@@ -19,7 +34,6 @@ $results = mysqli_fetch_all($data, 1);
             <th>Date</th>
             <th>Time</th>
             <th>People</th>
-            <th>Message</th>
             <th>Action</th>
         </tr>
     </thead>
@@ -31,15 +45,13 @@ $results = mysqli_fetch_all($data, 1);
                 <td><?= ++$key ?></td>
                 <td><?= $result['name'] ?></td>
                 <td><?= $result['email'] ?></td>
-                <td><?= $result['phone'] ?></td>
+                <td><?= '0 ' . $result['phone'] ?></td>
                 <td><?= $result['date'] ?></td>
                 <td><?= $result['time'] ?></td>
                 <td><?= $result['total_people'] ?></td>
-                <td><?= substr($result['message'], 0, 10) . '..' ?></td>
                 <td>
                     <a class="btn btn-info" href="../controller/delete_table_book.php?id=<?= $result['id'] ?>">Cancel</a></a>
-                    <a class="btn btn-danger" href="../controller/delete_table_book.php?id=<?= $result['id'] ?>">Delete</a></a>
-                </td>
+
             </tr>
         <?php
         }

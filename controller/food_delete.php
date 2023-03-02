@@ -1,4 +1,5 @@
 <?php
+session_start();
 include '../include/env.php';
 $id = $_GET['id'];
 
@@ -14,6 +15,7 @@ if (file_exists($path)) {
     unlink($path);
     $delete_food_query = "DELETE FROM foods WHERE id=$id";
     $data = mysqli_query($conn, $delete_food_query);
+    $_SESSION['delete'] = "Food Deleted Successfully !";
 }
 // print_r(file_exists($path));
 // print_r($image_name);

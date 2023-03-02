@@ -1,10 +1,12 @@
 <?php
+session_start();
 include '../include/env.php';
 if (isset($_POST['submit'])) {
     //*assigning request
     $food_name = $_POST['food_name'];
     $food_des = $_POST['food_des'];
     $food_price = $_POST['food_price'];
+    $food_discount = $_POST['food_discount'];
     $food_img = $_FILES['food_img'];
     $catagory_id = $_POST['catagory_id'];
 
@@ -24,7 +26,8 @@ if (isset($_POST['submit'])) {
     }
     $path = "../backend_files/uploads/foods/$img_name";
     move_uploaded_file($food_img['tmp_name'], $path);
-    $insert = "INSERT INTO foods (food_name, food_des,food_price,food_img_name,catagory_id) VALUES ('$food_name','$food_des','$food_price','$img_name','$catagory_id')";
+    $insert = "INSERT INTO foods (food_name, food_des,food_price,food_img_name,catagory_id,food_discount) VALUES ('$food_name','$food_des','$food_price','$img_name','$catagory_id','$food_discount')";
     $data = mysqli_query($conn, $insert);
     header("Location: ../backend_files/add_food_section.php");
+    $_SESSION['success'] = "Food Added Successfully !";
 }

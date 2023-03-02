@@ -11,13 +11,30 @@ $results = mysqli_fetch_all($exu, 1);
 <?php
 if (isset($_SESSION['success'])) {
 ?>
-    <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true" style="position:absolute;bottom:70px;right:20px">
+    <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true" style="position:absolute;top:10px;right:10px">
         <div class="toast-header">
-            <strong class="me-auto">Add Banner</strong>
+            <strong class="me-auto">Update Banner</strong>
             <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
         </div>
         <div class="toast-body">
             <?= $_SESSION['success'] ?>
+        </div>
+    </div>
+<?php
+}
+?>
+
+
+<?php
+if (isset($_SESSION['delete'])) {
+?>
+    <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true" style="position:absolute;top:10px;right:10px">
+        <div class="toast-header">
+            <strong class="me-auto">Delete Banner</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            <?= $_SESSION['delete'] ?>
         </div>
     </div>
 <?php
@@ -112,4 +129,5 @@ if (isset($_SESSION['success'])) {
     <?php
     include './backend_slicePart_inc/footer.php';
     unset($_SESSION['success']);
+    unset($_SESSION['delete']);
     ?>

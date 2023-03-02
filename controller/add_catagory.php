@@ -20,6 +20,7 @@ if(isset($_POST['submit'])){
         $insert = "INSERT INTO catagories (catagory) VALUES ('$catagory')";
         $data = mysqli_query($conn,$insert);
         header("Location: ../backend_files/add_catagory_section.php");
+        $_SESSION['success'] = "Catagory Added Successfully !";
         
     }
 

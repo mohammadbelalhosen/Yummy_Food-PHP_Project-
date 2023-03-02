@@ -10,7 +10,6 @@ if (isset($_POST['submit'])) {
     $date = $_POST['date'];
     $time = $_POST['time'];
     $total_people = $_POST['total_people'];
-    $message = $_POST['message'];
 
     $errors = [];
 
@@ -33,9 +32,6 @@ if (isset($_POST['submit'])) {
     if (empty($total_people)) {
         $errors['total_people_error'] = "Please Enter Total People";
     }
-    if (empty($message)) {
-        $errors['message_error'] = "Please Enter Messege";
-    }
 
     if (count($errors) > 0) {
 
@@ -44,7 +40,7 @@ if (isset($_POST['submit'])) {
         header("Location: ../index.php#book-a-table");
     } else {
 
-        $insert = "INSERT INTO table_book_orders (name, email, phone, date, time, total_people, message) VALUES ('$name','$email','$phone','$date','$time','$total_people','$message')";
+        $insert = "INSERT INTO table_book_orders (name, email, phone, date, time, total_people) VALUES ('$name','$email','$phone','$date','$time','$total_people')";
         $data = mysqli_query($conn, $insert);
         $_SESSION['success']= "Your Table is Booked Successfully";
         if ($data) {
