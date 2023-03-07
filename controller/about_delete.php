@@ -22,4 +22,4 @@ $qu = "DELETE FROM about_section WHERE id=$id";
 $e = mysqli_query($conn, $qu);
 
 header("Location: ../backend_files/all_about_section.php");
-$_SESSION['delete'] = "Delete Successfully !";
+$_SESSION['success'] = "About Delete Successfully !";

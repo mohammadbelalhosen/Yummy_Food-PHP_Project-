@@ -29,26 +29,6 @@ session_start();
 <body class="bg-gradient-primary">
 
     <div class="container">
-
-        <!-- ------------show tast massage for successfully registered---------- -->
-        <?php
-        if (isset($_SESSION['success'])) {
-        ?>
-            <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true" style="position: absolute;bottom:20px;right:20px">
-                <div class="toast-header">
-
-                    <strong class="me-auto">You Have a Massage</strong>
-
-                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                </div>
-                <div class="toast-body">
-                    <?= $_SESSION['success'] ?>
-                </div>
-            </div>
-        <?php
-        }
-        ?>
-
         <!-- Outer Row -->
         <div class="row justify-content-center">
 
@@ -68,7 +48,7 @@ session_start();
                                     </div>
                                     <form class="user" action="../controller/login_user.php" method="POST">
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" name="email" value="<?=isset($_SESSION['oldValue']['email']) ? $_SESSION['oldValue']['email'] : ''?>" placeholder="Enter Email Address...">
+                                            <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" name="email" value="<?= isset($_SESSION['oldValue']['email']) ? $_SESSION['oldValue']['email'] : '' ?>" placeholder="Enter Email Address...">
 
                                             <?php
                                             if (isset($_SESSION['errors']['log_email'])) {
@@ -79,7 +59,7 @@ session_start();
                                             ?>
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user" id="exampleInputPassword" name="pass"  placeholder="Password">
+                                            <input type="password" class="form-control form-control-user" id="exampleInputPassword" name="pass" placeholder="Password">
                                             <?php
                                             if (isset($_SESSION['errors']['log_pass'])) {
                                             ?>
@@ -101,10 +81,9 @@ session_start();
 
                                     </form>
 
-
-                                    <div class="text-center">
+                                    <!-- <div class="text-center">
                                         <a class="small" href="register.php">Create an Account!</a>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -128,7 +107,33 @@ session_start();
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="js/sb-admin-2.min.js"></script>
 
+    <!-- sweetalert cdn  -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    <?php
+    if (isset($_SESSION['success'])) {
+    ?>
+        <script>
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 4000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+            Toast.fire({
+                icon: "success",
+                title: "<?= $_SESSION['success'] ?>",
+
+            })
+        </script>
+    <?php
+    }
+    ?>
 </body>
 
 </html>

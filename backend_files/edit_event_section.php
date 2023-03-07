@@ -6,25 +6,6 @@ $query = "SELECT * FROM event_section WHERE id = $id";
 $exu = mysqli_query($conn, $query);
 $results = mysqli_fetch_assoc($exu);
 ?>
-<!-- toast massage -->
-<?php
-if (isset($_SESSION['success'])) {
-?>
-    <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true" style="position:absolute;bottom:70px;right:20px">
-        <div class="toast-header">
-            <strong class="me-auto">Add Event</strong>
-            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-        </div>
-        <div class="toast-body">
-            <?= $_SESSION['success'] ?>
-        </div>
-    </div>
-<?php
-}
-?>
-
-
-
 <div class="card">
     <div class="card-header bg-primary text-light">
         <span>Edit Event Section</span>
@@ -33,12 +14,12 @@ if (isset($_SESSION['success'])) {
         <form action="../controller/update_event_section.php" method="POST" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-3">
-                    <input type="number" class="d-none" name="id" value="<?=$results['id']?>">
-                    <input type="text" class="d-none" name="image_name" value="<?=$results['event_img']?>">
+                    <input type="number" class="d-none" name="id" value="<?= $results['id'] ?>">
+                    <input type="text" class="d-none" name="image_name" value="<?= $results['event_img'] ?>">
                     <!-- //*if click the image then choose img file  -->
                     <label for="img_banner">
-                        <img class="img" src="./uploads/event_section/<?=$results['event_img']?>" style="width: 100%;">
-                        <input type="file" class="d-none imageInput" name="event_img" id="img_banner" value="<?=$results['event_img']?>" >
+                        <img class="img" src="./uploads/event_section/<?= $results['event_img'] ?>" style="width: 100%;">
+                        <input type="file" class="d-none imageInput" name="event_img" id="img_banner" value="<?= $results['event_img'] ?>">
                     </label>
                 </div>
                 <div class="col-9">

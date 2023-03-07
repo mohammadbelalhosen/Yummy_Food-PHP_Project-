@@ -5,26 +5,18 @@ $query = "SELECT * FROM contact_section";
 $exu = mysqli_query($conn, $query);
 $results = mysqli_fetch_all($exu, 1);
 
+// print_r(substr($results[0]['open_time'],0,2) . ':00') ;
+
+// print_r(substr($results[0]['open_time'],6,7)) ;
+// $fd = $results[0]['open_time'];
+
+// exit;
+
 // print_r($results);
-?>
 
-<?php
-if (isset($_SESSION['success'])) {
-?>
-    <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true" style="position:absolute;bottom:70px;right:20px">
-        <div class="toast-header">
-            <strong class="me-auto">Delete Contact</strong>
-            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-        </div>
-        <div class="toast-body">
-            <?= $_SESSION['success'] ?>
-        </div>
-    </div>
-<?php
-}
-?>
+// exit;
 
-
+?>
 <table class="table">
     <thead>
         <tr>
@@ -35,6 +27,7 @@ if (isset($_SESSION['success'])) {
             <th scope="col">Phone Number</th>
             <th scope="col">Opening Day</th>
             <th scope="col">Opening Time</th>
+            <th scope="col">Closing Time</th>
             <th scope="col">Closed Day</th>
             <th scope="col">Social Link</th>
             <th scope="col">Action</th>
@@ -46,14 +39,15 @@ if (isset($_SESSION['success'])) {
         ?>
             <tr>
                 <th scope="row"><?= ++$key ?></th>
-                <td><?= substr($result['location_link'],0,10) . '...' ?></td>
-                <td><?= substr($result['address'],0,10) . '...' ?></td>
-                <td><?= substr($result['email'],0,10) . '...' ?></td>
-                <td><?='+880 ' . substr( $result['number'],0,5) ?></td>
+                <td><?= substr($result['location_link'], 0, 10) . '...' ?></td>
+                <td><?= substr($result['address'], 0, 10) . '...' ?></td>
+                <td><?= substr($result['email'], 0, 10) . '...' ?></td>
+                <td><?= '+880 ' . substr($result['number'], 0, 5) ?></td>
                 <td><?= $result['open_day'] ?></td>
-                <td><?= $result['open_time'] ?></td>
+                <td><?= $result['opening_time'] ?></td>
+                <td><?= $result['closing_time'] ?></td>
                 <td><?= $result['close_day'] ?></td>
-                <td><?= substr($result['social_link'],0,10) . '...' ?></td>
+                <td><?= substr($result['social_link'], 0, 10) . '...' ?></td>
                 <td>
                     <a class="btn btn-info" style="font-size:smaller" href="./edit_contact.php?id=<?= $result['id'] ?>">Edit</a></a>
                     <a class="btn btn-danger deletebanner" style="font-size:smaller" href="../controller/delete_contact.php?id=<?= $result['id'] ?>">Delete</a></a>
@@ -110,9 +104,9 @@ if (isset($_SESSION['success'])) {
             })
         })
     }
-    </script>
+</script>
 
-    <?php
-    include './backend_slicePart_inc/footer.php';
-    unset($_SESSION['success']);
-    ?>
+<?php
+include './backend_slicePart_inc/footer.php';
+unset($_SESSION['success']);
+?>

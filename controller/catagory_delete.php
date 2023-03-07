@@ -14,7 +14,7 @@ if (file_exists($path)) {
     $data = mysqli_query($conn, $delete_cat_query);
     $delete_food_query = "DELETE FROM foods WHERE catagory_id=$id";
     $data = mysqli_query($conn, $delete_food_query);
-    $_SESSION['delete'] = "Catagory Deleted Successfully !";
+    $_SESSION['success'] = "Catagory Deleted Successfully !";
 }
 // print_r(file_exists($path));
 // print_r($path);

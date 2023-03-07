@@ -6,38 +6,7 @@ $select = "SELECT f.id,f.food_name,f.food_des,f.food_price,f.food_img_name,f.cat
 $data = mysqli_query($conn, $select);
 $results = mysqli_fetch_all($data, 1);
 
-?>
 
-<?php
-if (isset($_SESSION['success'])) {
-?>
-    <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true" style="position:absolute;top:10px;right:10px">
-        <div class="toast-header">
-            <strong class="me-auto">Update Food</strong>
-            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-        </div>
-        <div class="toast-body">
-            <?= $_SESSION['success'] ?>
-        </div>
-    </div>
-<?php
-}
-?>
-
-<?php
-if (isset($_SESSION['delete'])) {
-?>
-    <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true" style="position:absolute;top:10px;right:10px">
-        <div class="toast-header">
-            <strong class="me-auto">Delete Food</strong>
-            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-        </div>
-        <div class="toast-body">
-            <?= $_SESSION['delete'] ?>
-        </div>
-    </div>
-<?php
-}
 ?>
 <table class="table">
     <thead>

@@ -7,24 +7,6 @@ $results = mysqli_fetch_all($exu, 1);
 
 // print_r($results);
 ?>
-
-<?php
-if (isset($_SESSION['success'])) {
-?>
-    <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true" style="position:absolute;top:10px;right:10px">
-        <div class="toast-header">
-            <strong class="me-auto">Add Banner</strong>
-            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-        </div>
-        <div class="toast-body">
-            <?= $_SESSION['success'] ?>
-        </div>
-    </div>
-<?php
-}
-?>
-
-
 <table class="table">
     <thead>
         <tr>
@@ -44,9 +26,9 @@ if (isset($_SESSION['success'])) {
         ?>
             <tr>
                 <th scope="row"><?= ++$key ?></th>
-                <td><?=$result['chefs_name']?></td>
-                <td><?=$result['job_title']?></td>
-                <td><?= substr($result['chefs_des'],0,15) . '...' ?></td>
+                <td><?= $result['chefs_name'] ?></td>
+                <td><?= $result['job_title'] ?></td>
+                <td><?= substr($result['chefs_des'], 0, 15) . '...' ?></td>
                 <td><?= $result['profile_link'] ?></td>
                 <td><img style="width:150px;" src="<?= './uploads/Chefs_section/chefs_img/' . $result['chefs_img'] ?>" alt=""></td>
                 <td>
@@ -109,9 +91,9 @@ if (isset($_SESSION['success'])) {
             })
         })
     }
-    </script>
+</script>
 
-    <?php
-    include './backend_slicePart_inc/footer.php';
-    unset($_SESSION['success']);
-    ?>
+<?php
+include './backend_slicePart_inc/footer.php';
+unset($_SESSION['success']);
+?>

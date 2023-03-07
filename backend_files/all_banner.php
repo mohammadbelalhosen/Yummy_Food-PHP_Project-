@@ -7,41 +7,6 @@ $results = mysqli_fetch_all($exu, 1);
 
 // print_r($results);
 ?>
-
-<?php
-if (isset($_SESSION['success'])) {
-?>
-    <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true" style="position:absolute;top:10px;right:10px">
-        <div class="toast-header">
-            <strong class="me-auto">Update Banner</strong>
-            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-        </div>
-        <div class="toast-body">
-            <?= $_SESSION['success'] ?>
-        </div>
-    </div>
-<?php
-}
-?>
-
-
-<?php
-if (isset($_SESSION['delete'])) {
-?>
-    <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true" style="position:absolute;top:10px;right:10px">
-        <div class="toast-header">
-            <strong class="me-auto">Delete Banner</strong>
-            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-        </div>
-        <div class="toast-body">
-            <?= $_SESSION['delete'] ?>
-        </div>
-    </div>
-<?php
-}
-?>
-
-
 <table class="table">
     <thead>
         <tr>
@@ -60,8 +25,8 @@ if (isset($_SESSION['delete'])) {
         ?>
             <tr>
                 <th scope="row"><?= ++$key ?></th>
-                <td><?= substr($result['banner_title'],0,10) . '...' ?></td>
-                <td><?= substr($result['banner_des'],0,15) . '...' ?></td>
+                <td><?= substr($result['banner_title'], 0, 10) . '...' ?></td>
+                <td><?= substr($result['banner_des'], 0, 15) . '...' ?></td>
                 <td><?= $result['video_link'] ?></td>
                 <td><img style="width:150px;" src="<?= './uploads/' . $result['img_banner'] ?>" alt=""></td>
                 <td>
@@ -94,7 +59,6 @@ if (isset($_SESSION['delete'])) {
 
 <!-- sweet alert delete using javascript -->
 
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
 <script>
@@ -124,10 +88,10 @@ if (isset($_SESSION['delete'])) {
             })
         })
     }
-    </script>
+</script>
 
-    <?php
-    include './backend_slicePart_inc/footer.php';
-    unset($_SESSION['success']);
-    unset($_SESSION['delete']);
-    ?>
+<?php
+include './backend_slicePart_inc/footer.php';
+unset($_SESSION['success']);
+unset($_SESSION['delete']);
+?>

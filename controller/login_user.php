@@ -50,7 +50,6 @@ if (isset($_POST['login'])) {
                 //when pass and email is correct then go to dashboard
                 header("location:../backend_files/dashboard.php");
                 $_SESSION['auth'] = $fetch_data;
-                
             }
         }
     }

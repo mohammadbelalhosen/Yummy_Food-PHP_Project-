@@ -16,6 +16,6 @@ if (file_exists($path) == 1) {
 
 $qu = "DELETE FROM event_section WHERE id=$id";
 $e = mysqli_query($conn, $qu);
-$_SESSION['delete'] = "Event Deleted Successfully !";
+$_SESSION['success'] = "Event Deleted Successfully !";
 
 header("Location: ../backend_files/all_event_section.php");

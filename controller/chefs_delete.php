@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 $id = $_GET['id'];
 include '../include/env.php';
 $qury = "SELECT chefs_img FROM chefs_section WHERE id=$id";
@@ -17,4 +17,5 @@ if (file_exists($path) == 1) {
 $qu = "DELETE FROM chefs_section WHERE id=$id";
 $e = mysqli_query($conn, $qu);
 
+$_SESSION['success'] = "Chefs Deleted Successfully !";
 header("Location: ../backend_files/all_chefs_section.php");

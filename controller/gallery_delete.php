@@ -16,6 +16,6 @@ if (file_exists($path) == 1) {
 
 $qu = "DELETE FROM gallery_section WHERE id=$id";
 $e = mysqli_query($conn, $qu);
-$_SESSION['delete'] = "Gallery Deleted Successfully !";
+$_SESSION['success'] = "Gallery Deleted Successfully !";
 
 header("Location: ../backend_files/all_gallery_section.php");

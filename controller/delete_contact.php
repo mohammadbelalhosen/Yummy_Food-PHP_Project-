@@ -12,4 +12,4 @@ $qu = "DELETE FROM contact_section WHERE id=$id";
 $e = mysqli_query($conn, $qu);
 
 header("Location: ../backend_files/all_contact_section.php");
-$_SESSION['success'] = "Deleted Successfully !";
+$_SESSION['success'] = "Contact Deleted Successfully !";

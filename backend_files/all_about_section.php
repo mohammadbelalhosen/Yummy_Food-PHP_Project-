@@ -6,40 +6,8 @@ $exu = mysqli_query($conn, $query);
 $results = mysqli_fetch_all($exu, 1);
 
 // print_r($results);
+// exit;
 ?>
-
-<?php
-if (isset($_SESSION['success'])) {
-?>
-    <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true" style="position:absolute;top:10px;right:10px">
-        <div class="toast-header">
-            <strong class="me-auto">Update Banner</strong>
-            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-        </div>
-        <div class="toast-body">
-            <?= $_SESSION['success'] ?>
-        </div>
-    </div>
-<?php
-}
-?>
-<?php
-if (isset($_SESSION['delete'])) {
-?>
-    <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true" style="position:absolute;top:10px;right:10px">
-        <div class="toast-header">
-            <strong class="me-auto">Delete About</strong>
-            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-        </div>
-        <div class="toast-body">
-            <?= $_SESSION['delete'] ?>
-        </div>
-    </div>
-<?php
-}
-?>
-
-
 <table class="table">
     <thead>
         <tr>
@@ -61,7 +29,7 @@ if (isset($_SESSION['delete'])) {
                 <th scope="row"><?= ++$key ?></th>
                 <td><img style="width:150px;" src="<?= './uploads/about_section/about_bannera_img/' . $result['banner_img'] ?>" alt=""></td>
                 <td><img style="width:150px;" src="<?= './uploads/about_section/tharmnail_img/' . $result['tharmnail_img'] ?>" alt=""></td>
-                <td><?= '+880 '. $result['number'] ?></td>
+                <td><?= '+880 ' . $result['number'] ?></td>
                 <td><?= substr($result['about_desone'], 0, 15) . '...' ?></td>
                 <td><?= $result['video_link'] ?></td>
                 <td>

@@ -7,30 +7,11 @@ $results = mysqli_fetch_all($exu, 1);
 
 // print_r($results);
 ?>
-
-
-<?php
-if (isset($_SESSION['delete'])) {
-?>
-    <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true" style="position:absolute;top:10px;right:10px">
-        <div class="toast-header">
-            <strong class="me-auto">Delete Table Image</strong>
-            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-        </div>
-        <div class="toast-body">
-            <?= $_SESSION['delete'] ?>
-        </div>
-    </div>
-<?php
-}
-?>
-
-
 <table class="table">
     <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">Table Image</th>
+            <th scope="col">Table Image & Counter Image</th>
             <th scope="col">Status</th>
             <th scope="col">Action</th>
         </tr>

@@ -63,7 +63,47 @@
   $datas = mysqli_query($conn, $select_table);
   $table = mysqli_fetch_assoc($datas);
 
+  //fetch for table order section
+
+  $select_order = "SELECT * FROM table_book_orders";
+  $datas = mysqli_query($conn, $select_order);
+  $orders = mysqli_fetch_all($datas, 1);
+
+
+  //fetch for counter section
+
+  $select_counter = "SELECT counter,counter_name FROM counter_section WHERE status = '1'";
+  $datas = mysqli_query($conn, $select_counter);
+  $counters = mysqli_fetch_all($datas, 1);
+
+  //fetch for Why section
+
+  $select_why = "SELECT * FROM why_section WHERE status = '1'";
+  $datas = mysqli_query($conn, $select_why);
+  $why = mysqli_fetch_assoc($datas);
+
+  //fetch for Why Feature section
+
+  $select_feature = "SELECT * FROM feature_section WHERE status = '1'";
+  $datas = mysqli_query($conn, $select_feature);
+  $features = mysqli_fetch_all($datas, 1);
+
+  //fetch for Other  section
+
+  $select_other = "SELECT * FROM other_section WHERE status = '1'";
+  $datas = mysqli_query($conn, $select_other);
+  $other = mysqli_fetch_assoc($datas);
+
+
+  // time formate
+  $open = DateTime::createFromFormat('H:i', $contact['opening_time']);
+  $open_d = ($open->format('h:i A')); // output show
+  $close = DateTime::createFromFormat('H:i', $contact['closing_time']);
+  $close_d = ($close->format('h:i A')); // output show
+
   ?>
+
+
 
  <!-- ======= Hero Section ======= -->
  <section id="hero" class="hero d-flex align-items-center section-bg">
@@ -129,9 +169,106 @@
 
    <!-- ======= Why Us Section ======= -->
 
+
+   <section id="why-us" class="why-us section-bg">
+     <div class="container" data-aos="fade-up">
+
+       <div class="row gy-4">
+
+         <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+           <div class="why-box">
+             <h3><?= "Why Choose " . $other['r_name'] . " ?" ?></h3>
+             <p>
+               <?= $why['red_card_des'] ?>
+             </p>
+             <div class="text-center">
+               <a href="#" class="more-btn">Learn More <i class="bx bx-chevron-right"></i></a>
+             </div>
+           </div>
+         </div><!-- End Why Box -->
+
+
+         <div class="col-lg-8 d-flex align-items-center">
+           <div class="row gy-4">
+
+             <?php
+              foreach ($features as $feature) {
+              ?>
+
+
+               <div class="col-xl-4" data-aos="fade-up" data-aos-delay="200">
+                 <div class="icon-box d-flex flex-column justify-content-center align-items-center">
+                   <!-- <i class="bi bi-clipboard-data"></i> -->
+                   <?= $feature['white_card_icon'] ?>
+                   <h4><?= $feature['white_card_title'] ?></h4>
+                   <p><?= $feature['white_card_des'] ?></p>
+                 </div>
+               </div><!-- End Icon Box -->
+             <?php
+              }
+              ?>
+
+
+
+           </div>
+         </div>
+
+       </div>
+
+     </div>
+   </section>
    <!-- End Why Us Section -->
 
+
+
    <!-- ======= Stats Counter Section ======= -->
+
+   <!-- ======= Stats Counter Section ======= -->
+   <section id="stats-counter" class="stats-counters">
+     <div class="container" data-aos="zoom-out">
+
+       <div class="row gy-4">
+
+         <div class="col-lg-3 col-md-6">
+           <div class="stats-item text-center w-100 h-100">
+             <span data-purecounter-start="0" data-purecounter-end="<?= count($foods) ?>" data-purecounter-duration="1" class="purecounter"></span>
+             <p>Present Foods</p>
+           </div>
+         </div>
+         <!-- End Stats Item -->
+
+         <div class="col-lg-3 col-md-6">
+           <div class="stats-item text-center w-100 h-100">
+             <span data-purecounter-start="0" data-purecounter-end="<?= count($chefs) ?>" data-purecounter-duration="1" class="purecounter"></span>
+             <p>Present Chefs</p>
+           </div>
+         </div><!-- End Stats Item -->
+
+         <div class="col-lg-3 col-md-6">
+           <div class="stats-item text-center w-100 h-100">
+             <span data-purecounter-start="0" data-purecounter-end="<?= count($orders)  ?>" data-purecounter-duration="1" class="purecounter"></span>
+             <p>All Orders</p>
+           </div>
+         </div><!-- End Stats Item -->
+
+         <?php
+          foreach ($counters as $counter) {
+          ?>
+           <div class="col-lg-3 col-md-6">
+             <div class="stats-item text-center w-100 h-100">
+               <span data-purecounter-start="0" data-purecounter-end="<?= $counter['counter'] ?>" data-purecounter-duration="1" class="purecounter"></span>
+               <p><?= $counter['counter_name'] ?></p>
+             </div>
+           </div><!-- End Stats Item -->
+         <?php
+          }
+          ?>
+
+
+       </div>
+
+     </div>
+   </section><!-- End Stats Counter Section -->
 
    <!-- End Stats Counter Section -->
 
@@ -327,6 +464,9 @@
            <!-- book a table form start -->
 
            <form action="./controller/book_table.php" method="post" style="padding: 40px;">
+
+             <input class="d-none" type="text" name="subject" value="<?= $other['r_name'] . ' ' . 'Table Booked' ?>">
+             <input class="d-none" type="text" name="body" value=" <?= "Your Table Has Been Booked Successfully . If you want to cancel your Table Order then click or go to  " . $other['r_name'] . " Website Contact Us section and you can Send Message or Call Us. Our Phone Number is : " . "  +880" . $contact['number'] . "  Thank You For Your Table Booking ! " ?> ">
              <div class="row gy-4">
                <div class="col-lg-4 col-md-6">
                  <label> Enter Your Name : </label>
@@ -362,7 +502,7 @@
                   ?>
                </div>
                <div class="col-lg-4 col-md-6">
-                 <label class=""> Enter Date : </label>
+                 <label class=""> <span class="text-danger">Closed Day:<?= $contact['close_day'] ?></span> Enter Date : </label>
                  <input type="date" name="date" id="date" value="<?= isset($_SESSION['old_data']['date']) ? $_SESSION['old_data']['date'] : '' ?>">
                  <?php
                   if (isset($_SESSION['errors']['date_error'])) {
@@ -371,12 +511,13 @@
                  <?php
                   }
                   ?>
+
                </div>
                <div class="col-lg-4 col-md-6">
                  <label class=""> Enter Time : </label>
 
 
-                 <input type="time" min="10:00" max="23:00" name="time" id="time" value="<?= isset($_SESSION['old_data']['time']) ? $_SESSION['old_data']['time'] : '' ?>">
+                 <input type="time" min="<?= $contact['opening_time'] ?>" max="<?= $contact['closing_time'] ?>" name="time" id="time" value="<?= isset($_SESSION['old_data']['time']) ? $_SESSION['old_data']['time'] : '' ?>">
                  <?php
                   if (isset($_SESSION['errors']['time_error'])) {
                   ?>
@@ -424,15 +565,15 @@
     text-align: center;
     color: #000;
     font-weight: 500;
-    transition: 0.4s;;"> If you want to cancel your Table Order then click or go to Contact Us section and you can Send Message or Call Us. Thank You ! <a href="#contact"> Click Hare</a> </div>
+    transition: 0.4s;;"> If you want to cancel your Table Order then click or go to Contact Us section and you can Send Message or Call Us Within 2 Hour. Thank You ! <a href="#contact"> Click Hare</a> </div>
 
-             <?php
-              if (isset($_SESSION['success'])) {
-              ?>
+             <!-- <?php
+                  if (isset($_SESSION['success'])) {
+                  ?>
                <div style="text-align: center;background: var(--color-primary);padding: 20px;color:white; margin-top:10px"><?= $_SESSION['success'] ?></div>
              <?php
-              }
-              ?>
+                  }
+              ?> -->
            </form>
            <!-- book a table form end -->
          </div>
@@ -522,7 +663,7 @@
              <i class="icon bi bi-share flex-shrink-0"></i>
              <div>
                <h3>Opening Hours</h3>
-               <div><strong><?= $contact['open_day'] . ':' ?></strong> <?= $contact['open_time'] . ';' ?>
+               <div><strong><?= $contact['open_day'] . ':' ?></strong> <?= $open_d . '-' . $close_d . ';' ?>
                  <strong><?= $contact['close_day'] . ':' ?></strong> Closed
                </div>
              </div>
@@ -578,11 +719,7 @@
             }
             ?>
          </div>
-         <!-- <div class="my-3">
-           <div class="loading">Loading</div>
-           <div class="error-message"></div>
-           <div class="sent-message">Your message has been sent. Thank you!</div>
-         </div> -->
+
          <div class="text-center"><button style="background: var(--color-primary);
   border: 0;
   padding: 14px 60px;
@@ -590,13 +727,13 @@
   transition: 0.4s;
   border-radius: 50px;margin-bottom: 30px;" type="submit" name="submit">Send Message</button></div>
 
-         <?php
-          if (isset($_SESSION['message_success'])) {
-          ?>
+         <!-- <?php
+              if (isset($_SESSION['message_success'])) {
+              ?>
            <div style="text-align: center;background: var(--color-primary);padding: 20px;color:white; margin-top:10px"><?= $_SESSION['message_success'] ?></div>
          <?php
-          }
-          ?>
+              }
+          ?> -->
        </form>
 
 

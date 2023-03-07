@@ -16,6 +16,6 @@ if (file_exists($path) == 1) {
 
 $qu = "DELETE FROM tableimg_section WHERE id=$id";
 $e = mysqli_query($conn, $qu);
-$_SESSION['delete'] = "Table Image Deleted Successfully !";
+$_SESSION['success'] = "Table & Counter Image Deleted Successfully !";
 
 header("Location: ../backend_files/all_tableimg_section.php");

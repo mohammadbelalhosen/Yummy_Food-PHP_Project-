@@ -1,11 +1,28 @@
 <!DOCTYPE html>
+<?php
+include './include/env.php';
+//fetch for counter image section
+
+//fetch for table image section
+
+$select_table = "SELECT * FROM tableimg_section WHERE status = '1'";
+$datas = mysqli_query($conn, $select_table);
+$table = mysqli_fetch_assoc($datas);
+
+//fetch for Other  section
+
+$select_other = "SELECT * FROM other_section WHERE status = '1'";
+$datas = mysqli_query($conn, $select_other);
+$other = mysqli_fetch_assoc($datas);
+
+?>
 <html lang="en">
 
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Yummy Restaurant | Index </title>
+  <title><?= $other['r_name'] ?> | Index </title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -27,6 +44,10 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
+
+  <!-- fontawosome icon -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   <!-- custom css file  -->
   <style>
@@ -84,14 +105,42 @@
     #message:focus {
       border: 3px solid red;
     }
+
+    #stats-counter {
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url("./backend_files/uploads/tableimg_section/<?= $table['table_image'] ?>") center center;
+      background-size: cover;
+      padding: 100px 0;
+    }
+
+    @media (min-width: 1365px) {
+      #stats-counter {
+        background-attachment: fixed;
+      }
+    }
+
+    #stats-counter .stats-item {
+      padding: 30px;
+      width: 100%;
+    }
+
+    #stats-counter .stats-item span {
+      font-size: 48px;
+      display: block;
+      color: #fff;
+      font-weight: 700;
+    }
+
+    #stats-counter .stats-item p {
+      padding: 0;
+      margin: 0;
+      font-family: var(--font-secondary);
+      font-size: 16px;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.6);
+    }
   </style>
 
-  <!-- =======================================================
-  * Template Name: Yummy - v1.2.1
-  * Template URL: https://bootstrapmade.com/yummy-bootstrap-restaurant-website-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
 <body>
@@ -103,7 +152,7 @@
       <a href="index.html" class="logo d-flex align-items-center me-auto me-lg-0">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="assets/img/logo.png" alt=""> -->
-        <h1>Yummy Restaurant<span>.</span></h1>
+        <h1><?= $other['r_name'] ?><span>.</span></h1>
       </a>
 
       <nav id="navbar" class="navbar">
@@ -116,30 +165,11 @@
           <li><a href="#book-a-table">Table</a></li>
           <li><a href="#gallery">Gallery</a></li>
           <li><a href="#contact">Contact Us</a></li>
-          <!-- <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-            <ul>
-              <li><a href="#">Drop Down 1</a></li>
-              <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-                <ul>
-                  <li><a href="#">Deep Drop Down 1</a></li>
-                  <li><a href="#">Deep Drop Down 2</a></li>
-                  <li><a href="#">Deep Drop Down 3</a></li>
-                  <li><a href="#">Deep Drop Down 4</a></li>
-                  <li><a href="#">Deep Drop Down 5</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Drop Down 2</a></li>
-              <li><a href="#">Drop Down 3</a></li>
-              <li><a href="#">Drop Down 4</a></li>
-            </ul>
-          </li> -->
-          <!-- when need dropdown then use it -->
           </a></li>
           <!-- <li><a href="./backend_files/login.php">Login</a></li> -->
         </ul>
       </nav><!-- .navbar -->
 
-      <!-- <a class="btn-book-a-table" href="./fronend_slicePart_inc/table_book.php">Book a Table</a> -->
       <a class="btn-book-a-table" href="#book-a-table">Book a Table</a>
       <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
       <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>

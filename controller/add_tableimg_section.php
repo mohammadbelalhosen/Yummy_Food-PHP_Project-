@@ -39,7 +39,7 @@ if (isset($_POST['submit'])) {
         $exe = mysqli_query($conn, $query);
         if ($exe) {
             header("location: ../backend_files/add_tableimg_section.php");
-            $_SESSION['success'] = " Table Image Added Succesfully !";
+            $_SESSION['success'] = " Table & Counter Image Added Succesfully !";
         }
     }
 } else {

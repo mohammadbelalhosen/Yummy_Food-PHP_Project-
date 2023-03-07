@@ -65,12 +65,14 @@ $catrec = mysqli_fetch_assoc($datathree);
                     <label for="" class="w-100">Select Catagory<span class="text-danger">*</span>
                         <select class="form-control" name="catagory_id">
                             <option><?= $catrec['catagory'] ?></option>
-
+                            <?php
+                            foreach ($records as $key => $result) {
+                            ?>
+                                <option value="<?= $result['id'] ?>"><?= $result['catagory'] ?></option>
+                            <?php
+                            }
+                            ?>
                         </select>
-
-
-
-
                 </div>
 
             </div>

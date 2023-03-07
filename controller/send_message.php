@@ -33,9 +33,9 @@ if (isset($_POST['submit'])) {
         header("Location: ../index.php#send-message");
     } else {
 
-        $insert = "INSERT INTO  message ( name ,  email ,  subject ,  message ) VALUES ('$name','$email','$subject','$message')";
+        $insert = "INSERT INTO  message ( name ,  email ,  subject ,  message ) VALUES ('$message_name','$message_email','$subject','$message')";
         $data = mysqli_query($conn, $insert);
-        $_SESSION['message_success'] = "Your message has been sent. Thank you!";
+        $_SESSION['success'] = "Your message has been sent. Thank you!";
         if ($data) {
             header("Location: ../index.php#send-message");
         }

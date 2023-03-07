@@ -4,24 +4,18 @@ include '../include/env.php';
 $select = "SELECT * FROM table_book_orders";
 $data = mysqli_query($conn, $select);
 $results = mysqli_fetch_all($data, 1);
-// print_r(array_column($results,'phone'))
 
-?>
+//fetch for Other  section
 
-<?php
-if (isset($_SESSION['success'])) {
-?>
-    <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true" style="position:absolute;top:10px;right:10px">
-        <div class="toast-header">
-            <strong class="me-auto">Cancel Table Order</strong>
-            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-        </div>
-        <div class="toast-body">
-            <?= $_SESSION['success'] ?>
-        </div>
-    </div>
-<?php
-}
+$select_other = "SELECT * FROM other_section WHERE status = '1'";
+$datas = mysqli_query($conn, $select_other);
+$other = mysqli_fetch_assoc($datas);
+
+// fetch for contact 
+$select_contact = "SELECT * FROM contact_section";
+$datas = mysqli_query($conn, $select_contact);
+$contact = mysqli_fetch_assoc($datas);
+
 ?>
 <div style="padding:20px" class="bg-primary text-light h3 ">All Table Book Order</div>
 <table class="table">
@@ -50,7 +44,14 @@ if (isset($_SESSION['success'])) {
                 <td><?= $result['time'] ?></td>
                 <td><?= $result['total_people'] ?></td>
                 <td>
-                    <a class="btn btn-info" href="../controller/delete_table_book.php?id=<?= $result['id'] ?>">Cancel</a></a>
+                    <form action="../controller/delete_table_book.php?id=<?= $result['id'] ?>" method="POST">
+                        <input class="d-none" type="text" name="subject" value="<?= $other['r_name'] . ' ' . ' Table Canceled' ?>">
+                        <input class="d-none" type="text" name="body" value=" <?= "Your Table Has Been Canceled Successfully . If you want to Book your Table then click or go to  " . $other['r_name'] . " Website Book a Table section Then Book Your Table. Our Phone Number is : " . "  +880" . $contact['number'] . "  Thank You !" ?> ">
+                        <input class="d-none" type="email" name="email" id="email" value="<?= isset($_SESSION['email_e']) ? $_SESSION['email_e'] : 'mdbelalhosen6234@gmail.com' ?>">
+
+                        <button class="btn btn-info" type="submit" name="submit">Cancel</button>
+                        <a class="btn btn-danger" href="../controller/deletetwo_table_book.php?id=<?= $result['id'] ?>">Delete</a></a>
+                    </form>
 
             </tr>
         <?php

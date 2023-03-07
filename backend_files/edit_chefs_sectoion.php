@@ -8,25 +8,6 @@ $results = mysqli_fetch_assoc($exu);
 $path = './uploads/Chefs_section/chefs_img/' . $results['chefs_img'];
 
 ?>
-<!-- toast massage -->
-<?php
-if (isset($_SESSION['success'])) {
-?>
-    <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true" style="position:absolute;bottom:70px;right:20px">
-        <div class="toast-header">
-            <strong class="me-auto">Update Chefs</strong>
-            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-        </div>
-        <div class="toast-body">
-            <?= $_SESSION['success'] ?>
-        </div>
-    </div>
-<?php
-}
-?>
-
-
-
 <div class="card">
     <div class="card-header bg-primary text-light">
         <span>Edit Chefs Section</span>

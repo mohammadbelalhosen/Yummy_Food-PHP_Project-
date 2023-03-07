@@ -16,6 +16,6 @@ if (file_exists($path) == 1) {
 
 $qu = "DELETE FROM add_banner_part WHERE id=$id";
 $e = mysqli_query($conn, $qu);
-$_SESSION['delete'] = "Banner Deleted Successfully !";
+$_SESSION['success'] = "Banner Deleted Successfully !";
 
 header("Location: ../backend_files/all_banner.php");

@@ -1,28 +1,9 @@
 <?php
 include './backend_slicePart_inc/header.php';
 ?>
-<!-- toast massage -->
-<?php
-if (isset($_SESSION['success'])) {
-?>
-    <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true" style="z-index:1;position:absolute;top:10px;right:10px">
-        <div class="toast-header">
-            <strong class="me-auto">Add Table Image</strong>
-            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-        </div>
-        <div class="toast-body">
-            <?= $_SESSION['success'] ?>
-        </div>
-    </div>
-<?php
-}
-?>
-
-
-
 <div class="card">
     <div class="card-header bg-primary text-light">
-        <span>Add Table Image</span>
+        <span>Add Table Image & Counter Image</span>
     </div>
     <div class="card-body">
         <form action="../controller/add_tableimg_section.php" method="POST" enctype="multipart/form-data">
@@ -43,7 +24,7 @@ if (isset($_SESSION['success'])) {
                 }
                 ?>
             </div>
-            <button type="submit" class="btn btn-primary float-left w-100" name="submit">Add Table Image</button>
+            <button type="submit" class="btn btn-primary float-left w-100" name="submit">Add Table & Counter Image</button>
 
 
 
@@ -51,10 +32,6 @@ if (isset($_SESSION['success'])) {
 
     </form>
 </div>
-</div>
-
-
-
 
 <?php
 include './backend_slicePart_inc/footer.php';

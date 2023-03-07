@@ -1,10 +1,19 @@
 <?php
 session_start();
+include '../include/env.php';
 //* if authenticating is false so redirect page 
 if (!isset($_SESSION['auth'])) {
     header("location:./login.php");
 }
 // print_r($_SESSION['auth']);
+
+//fetch for Other  section
+
+$select_other = "SELECT * FROM other_section WHERE status = '1'";
+$datas = mysqli_query($conn, $select_other);
+$other = mysqli_fetch_assoc($datas);
+
+
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +27,8 @@ if (!isset($_SESSION['auth'])) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Yammy Restaurant | Dashboard | <?= isset($_SESSION['auth']['fName']) ? $_SESSION['auth']['fName'] : 'Mohammad' ?> </title>
+    <title><?= $other['r_name'] ?> | Dashboard | <?= isset($_SESSION['auth']['fName']) ? $_SESSION['auth']['fName'] : 'Mohammad' ?> </title>
+    <link href="../assets/img/web-dashboard.png" rel="icon">
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -67,25 +77,10 @@ if (!isset($_SESSION['auth'])) {
                 Interface
             </div>
 
-            <!-- Nav Item - Pages Collapse Menu -->
-            <!-- <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Components</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Components:</h6>
-                        <a class="collapse-item" href="buttons.html">Buttons</a>
-                        <a class="collapse-item" href="cards.html">Cards</a>
-                    </div>
-                </div>
-            </li> -->
-
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo_banner" aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>Banner</span>
+                    <span>Banner Section</span>
                 </a>
                 <div id="collapseTwo_banner" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
@@ -99,7 +94,7 @@ if (!isset($_SESSION['auth'])) {
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo_section" aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>Catagories</span>
+                    <span>Catagories & Foods Sec.</span>
                 </a>
                 <div id="collapseTwo_section" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
@@ -126,12 +121,12 @@ if (!isset($_SESSION['auth'])) {
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#table" aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>Table Image Section</span>
+                    <span>Table & Counter Image</span>
                 </a>
                 <div id="table" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="./add_tableimg_section.php">Add Table Image</a>
-                        <a class="collapse-item" href="./all_tableimg_section.php">All Table Image</a>
+                        <a class="collapse-item" href="./add_tableimg_section.php">Add Image</a>
+                        <a class="collapse-item" href="./all_tableimg_section.php">All Image</a>
                     </div>
                 </div>
             </li>
@@ -146,6 +141,22 @@ if (!isset($_SESSION['auth'])) {
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="./add_about_section.php">Add About Section</a>
                         <a class="collapse-item" href="./all_about_section.php">All About</a>
+                    </div>
+                </div>
+            </li>
+
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#why" aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Why Choose Section</span>
+                </a>
+                <div id="why" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="./add_why_section.php">Add Why Card</a>
+                        <a class="collapse-item" href="./add_whyfeature_section.php">Add Feature Card</a>
+                        <a class="collapse-item" href="./all_why_section.php">All Why Card</a>
+                        <a class="collapse-item" href="./all_whyfeature_section.php">All Feature Card</a>
                     </div>
                 </div>
             </li>
@@ -205,6 +216,32 @@ if (!isset($_SESSION['auth'])) {
                 </div>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#counter" aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Counter Section</span>
+                </a>
+                <div id="counter" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="./add_counter_section.php">Add Counter</a>
+                        <a class="collapse-item" href="./all_counter_section.php">All Counter</a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#other" aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Others Section</span>
+                </a>
+                <div id="other" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="./add_other_section.php">Add Others Item</a>
+                        <a class="collapse-item" href="./all_other_section.php">All Item</a>
+                    </div>
+                </div>
+            </li>
+
 
             <!-- Divider -->
 
@@ -232,49 +269,11 @@ if (!isset($_SESSION['auth'])) {
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-                    <!-- Sidebar Toggle (Topbar) -->
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-bars"></i>
-                    </button>
-
-                    <!-- Topbar Search -->
-                    <!-- <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form> -->
-
-                    <!-- Topbar Navbar -->
+                    <div class="h3 text-primary "> <i class="fas fa-fw fa-cog"></i> <strong><?= $other['r_name'] ?> Website Dashboard
+                        </strong> <i class="fas fa-fw fa-cog"></i>
+                        <!-- <strong>Quick Link To Easily Open Important Section </strong> -->
+                    </div>
                     <ul class="navbar-nav ml-auto">
-
-                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                        <!-- <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-search fa-fw"></i>
-                            </a> -->
-                        <!-- Dropdown - Messages -->
-                        <!-- <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
-                                <form class="form-inline mr-auto w-100 navbar-search">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button">
-                                                <i class="fas fa-search fa-sm"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </li> -->
-
-                        <!-- notification massage on toopbar message alert start -->
-                        <!-- ------------- -->
-                        <!-- notification massage on toopbar message alert end -->
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -286,19 +285,7 @@ if (!isset($_SESSION['auth'])) {
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                <!-- <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Settings
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Activity Log
-                                </a> -->
-                                <!-- <div class="dropdown-divider"></div> -->
+
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout

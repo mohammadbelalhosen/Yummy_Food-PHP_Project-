@@ -16,18 +16,18 @@ if (isset($_POST['submit'])) {
     // exit();
     //*image processing
     if ($food_img['size'] == 0) {
-        $update = "UPDATE  foods  SET  food_name ='$food_name', food_des ='$food_des', food_price ='$food_price',  food_discount ='$food_discount' WHERE id = $id";
+        $update = "UPDATE  foods  SET  food_name ='$food_name', food_des ='$food_des', food_price ='$food_price', catagory_id = '$catagory_id', food_discount ='$food_discount' WHERE id = $id";
         $exute = mysqli_query($conn, $update);
         header("Location: ../backend_files/all_foods.php");
     } else {
 
         if (file_exists("../backend_files/uploads/foods/$image_name")) {
-            
+
             $extension = pathinfo($food_img['name'])['extension'];
             $img_name = "banner-" . uniqid() . '.' . $extension; //new image name
             unlink("../backend_files/uploads/foods/$image_name");
             move_uploaded_file($food_img['tmp_name'], "../backend_files/uploads/foods/$img_name");
-            $update = "UPDATE   foods   SET food_name  ='$food_name',  food_des  ='$food_des',  food_price  ='$food_price',  food_img_name  ='$img_name',  food_discount  ='$food_discount' WHERE id=$id";
+            $update = "UPDATE   foods   SET food_name  ='$food_name',  food_des  ='$food_des',  food_price  ='$food_price',  food_img_name  ='$img_name', catagory_id = '$catagory_id', food_discount  ='$food_discount' WHERE id=$id";
             $exute = mysqli_query($conn, $update);
             if ($exute) {
 

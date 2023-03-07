@@ -7,22 +7,6 @@ $results = mysqli_fetch_all($data, 1);
 // print_r(array_column($results,'phone'))
 
 ?>
-
-<?php
-if (isset($_SESSION['success'])) {
-?>
-    <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true" style="position:absolute;top:10px;right:10px">
-        <div class="toast-header">
-            <strong class="me-auto">Delete Message</strong>
-            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-        </div>
-        <div class="toast-body">
-            <?= $_SESSION['success'] ?>
-        </div>
-    </div>
-<?php
-}
-?>
 <div style="padding:20px" class="bg-primary text-light h3 ">All Messages</div>
 <table class="table">
     <thead>

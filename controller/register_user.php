@@ -57,7 +57,7 @@ if (isset($_POST['submit'])) {
         $query = "INSERT INTO register_user( fName, lName, email, pass) VALUES ('$fName','$lName','$email','$password')";
         $store = mysqli_query($conn, $query);
         if ($store) {
-            $_SESSION['success'] = "Your Details have been Submitted 😊";
+            $_SESSION['success'] = "Your Details have been Submitted !";
             header('location: ../backend_files/login.php');
         }
     }

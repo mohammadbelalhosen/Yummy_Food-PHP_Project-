@@ -11,7 +11,8 @@ if (isset($_POST['submit'])) {
   $email = $_POST['email'];
   $number = $_POST['number'];
   $open_day = $_POST['open_day'];
-  $open_time = $_POST['open_time'];
+  $opening_time = $_POST['opening_time'];
+  $closing_time = $_POST['closing_time'];
   $close_day = $_POST['close_day'];
   $social_link = $_POST['social_link'];
   // print_r($_POST);
@@ -34,8 +35,11 @@ if (isset($_POST['submit'])) {
   if (empty($open_day)) {
     $errors['open_day_er'] = "Insert  Opening Day !";
   }
-  if (empty($open_time)) {
-    $errors['open_time_er'] = "Insert  Opening Time !";
+  if (empty($opening_time)) {
+    $errors['opening_time_er'] = "Insert  Opening Time !";
+  }
+  if (empty($closing_time)) {
+    $errors['closing_time_er'] = "Insert  Closing Time !";
   }
   if (empty($close_day)) {
     $errors['close_day_er'] = "Insert  Closed Day !";
@@ -53,7 +57,7 @@ if (isset($_POST['submit'])) {
     header("location: ../backend_files/add_contact_section.php");
   } else {
     //* no errors
-    $query = "INSERT INTO  contact_section ( location_link ,  address ,  email ,  number ,  open_day ,  open_time ,  close_day ,  social_link) VALUES ('$location_link','$address','$email','$number','$open_day','$open_time','$close_day','$social_link')";
+    $query = "INSERT INTO  contact_section ( location_link ,  address ,  email ,  number ,  open_day ,  opening_time ,  close_day ,  social_link, closing_time) VALUES ('$location_link','$address','$email','$number','$open_day','$opening_time','$close_day','$social_link' ,'$closing_time')";
     $exe = mysqli_query($conn, $query);
     if ($exe) {
       header("location: ../backend_files/add_contact_section.php");
