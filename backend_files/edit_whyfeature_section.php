@@ -40,10 +40,6 @@ $results = mysqli_fetch_assoc($exu);
 
     </form>
 </div>
-</div>
-
-
-
 
 <?php
 include './backend_slicePart_inc/footer.php';

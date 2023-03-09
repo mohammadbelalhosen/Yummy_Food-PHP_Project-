@@ -14,13 +14,13 @@
 
       </div>
 
-      <div class="col-lg-3 col-md-6 footer-links d-flex">
+      <div class="col-lg-4 col-md-7 footer-links d-flex">
         <i class="bi bi-telephone icon"></i>
         <div>
           <h4>Reservations</h4>
           <p>
             <strong>Phone : </strong><?= '+880 ' . $contact['number'] ?><br>
-            <strong>Email : </strong><?= $contact['email'] ?><br>
+            <strong>Email : </strong> <?= $contact['email'] ?><br>
           </p>
         </div>
       </div>
@@ -36,7 +36,7 @@
         </div>
       </div>
 
-      <div class="col-lg-3 col-md-6 footer-links">
+      <div class="col-lg-2 col-md-6 footer-links">
         <h4>Follow Us</h4>
         <div class="social-links d-flex">
           <a href="<?= $contact['social_link'] ?>" class="facebook"><i class="bi bi-facebook"></i></a>
